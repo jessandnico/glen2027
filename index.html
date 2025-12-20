@@ -172,7 +172,7 @@
 
         .book-image-pane {
             width: 40%;
-            height: 320px; /* Reduced for a shorter container */
+            height: 320px;
         }
 
         .book-image-pane img {
@@ -183,7 +183,7 @@
 
         .book-text-pane {
             width: 60%;
-            padding: 1.5rem 2.5rem; /* Tightened padding to fit text better */
+            padding: 1.5rem 2.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -623,62 +623,68 @@
         <p class="text-xs uppercase tracking-[0.2em] text-[#a67c37]">Long Island &bull; MMXXVII</p>
     </footer>
 
-    <!-- Firebase SDKs -->
+    <!-- Resilient Firebase/Sheet Logic -->
     <script type="module">
+        // Import Firebase safely
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'gilded-nuptials';
-
-        // --- GOOGLE SHEETS CONFIGURATION ---
+        // CONFIGURATION
         const googleSheetURL = "https://script.google.com/macros/s/AKfycbz9YdAw-8F0v9_5vOU74eNx3CN-anl424OzZx1N0k3iI1D3A8x77PfhtdCTuFbeECyd/exec"; 
-
+        
+        let db = null;
+        let auth = null;
         let currentUser = null;
+        let currentAppId = 'gilded-nuptials';
 
-        const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
+        // Safe Initialization
+        try {
+            if (typeof __firebase_config !== 'undefined') {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'gilded-nuptials';
+
+                const initAuth = async () => {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                };
+
+                onAuthStateChanged(auth, (user) => {
+                    currentUser = user;
+                });
+
+                initAuth();
             }
-        };
+        } catch (e) {
+            console.warn("Firebase config not found. Proceeding with Google Sheets only.");
+        }
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-        });
-
-        initAuth();
-
+        // Resilient Submission Handler
         window.handleRSVPSubmit = async (event) => {
             event.preventDefault();
             const submitBtn = document.getElementById('rsvp-submit');
             submitBtn.disabled = true;
 
             const name = document.getElementById('rsvp-name').value;
-            const engagement = document.querySelector('input[name="engagement"]:checked').value;
+            const engagement = document.querySelector('input[name="engagement"]:checked')?.value || 'unknown';
             const notes = document.getElementById('rsvp-notes').value;
 
             const rsvpData = {
                 guestName: name,
                 status: engagement,
                 dietaryNotes: notes,
-                timestamp: serverTimestamp(),
-                submittedAt: new Date().toISOString()
+                submittedAt: new Date().toLocaleString()
             };
 
-            try {
-                // 1. Save to Internal Firestore Ledger (MANDATORY RULE 1)
-                if (currentUser) {
-                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'rsvps'), rsvpData);
-                }
-
-                // 2. Save to Google Sheet (Optional Upgrade)
-                if (googleSheetURL) {
+            // 1. Send to Google Sheets (External)
+            if (googleSheetURL) {
+                try {
                     await fetch(googleSheetURL, {
                         method: 'POST',
                         mode: 'no-cors',
@@ -686,21 +692,36 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(rsvpData)
                     });
+                } catch (sheetError) {
+                    console.error("Sheet Sync Error:", sheetError);
                 }
-
-                document.getElementById('rsvp-form').classList.add('hidden');
-                document.getElementById('success-msg').classList.remove('hidden');
-            } catch (error) {
-                console.error("Error saving RSVP:", error);
-                alert("An error occurred. Please try again.");
-                submitBtn.disabled = false;
             }
+
+            // 2. Send to Internal Ledger (Only if in Canvas/Firebase env)
+            if (db && currentUser) {
+                try {
+                    await addDoc(collection(db, 'artifacts', currentAppId, 'public', 'data', 'rsvps'), {
+                        ...rsvpData,
+                        timestamp: serverTimestamp()
+                    });
+                } catch (dbError) {
+                    console.error("Ledger Error:", dbError);
+                }
+            }
+
+            // Always show success to user
+            document.getElementById('rsvp-form').classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('hidden');
         };
 
-        document.getElementById('rsvp-form').addEventListener('submit', window.handleRSVPSubmit);
+        const rsvpForm = document.getElementById('rsvp-form');
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', window.handleRSVPSubmit);
+        }
     </script>
 
     <script>
+        // Storybook Logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.book-slide');
         
@@ -716,6 +737,7 @@
 
         document.getElementById('prevBtn').disabled = true;
 
+        // Navigation Logic
         window.setLanguage = function(lang) {
             document.body.className = 'min-h-screen lang-' + lang;
             document.getElementById('toggle-en').classList.toggle('active', lang === 'en');
