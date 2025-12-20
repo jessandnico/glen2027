@@ -220,6 +220,29 @@
             cursor: default;
         }
 
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         @media (max-width: 768px) {
             .book-slide {
                 flex-direction: column !important;
@@ -232,6 +255,9 @@
             }
             .book-text-pane {
                 padding: 1.25rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -262,10 +288,14 @@
 
     <!-- Navigation -->
     <nav class="bg-white sticky top-0 z-50 shadow-sm border-b border-[#c5a059]">
-        <div class="max-w-5xl mx-auto flex flex-wrap justify-center py-4 px-2 space-x-6 md:space-x-12 uppercase text-sm tracking-widest font-semibold">
+        <div class="max-w-6xl mx-auto flex flex-wrap justify-center py-4 px-2 space-x-4 md:space-x-10 uppercase text-sm tracking-widest font-semibold">
             <button onclick="switchTab('home')" class="nav-link active" id="btn-home">
                 <span lang-content="en">Our Story</span>
                 <span lang-content="es">Nuestra Historia</span>
+            </button>
+            <button onclick="switchTab('gallery')" class="nav-link" id="btn-gallery">
+                <span lang-content="en">Gallery</span>
+                <span lang-content="es">Galería</span>
             </button>
             <button onclick="switchTab('events')" class="nav-link" id="btn-events">
                 <span lang-content="en">The Events</span>
@@ -276,8 +306,8 @@
                 <span lang-content="es">Registro</span>
             </button>
             <button onclick="switchTab('rsvp')" class="nav-link" id="btn-rsvp">
-                <span lang-content="en">RSVP</span>
-                <span lang-content="es">Confirmar</span>
+                <span lang-content="en">Engagement Party RSVP</span>
+                <span lang-content="es">Fiesta de Compromiso</span>
             </button>
         </div>
     </nav>
@@ -443,6 +473,40 @@
             </div>
         </section>
 
+        <!-- SECTION: GALLERY -->
+        <section id="gallery" class="tab-content">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-4xl mb-4">
+                    <span lang-content="en">The Visual Archive</span>
+                    <span lang-content="es">El Archivo Visual</span>
+                </h2>
+                <p class="serif-font italic text-gray-600">
+                    <span lang-content="en">Capturing moments across the eras</span>
+                    <span lang-content="es">Capturando momentos a través de las eras</span>
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- 16 Themed Placeholder Images -->
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400" alt="Estate"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=400" alt="Celebration"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=400" alt="Architecture"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400" alt="Garden"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=400" alt="NYC"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=400" alt="Champagne"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1544144433-d50aff500b91?auto=format&fit=crop&q=80&w=400" alt="Mansion"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=400" alt="Vintage"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=400" alt="Lights"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&q=80&w=400" alt="Jersey"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&q=80&w=400" alt="Interior"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=400" alt="Scenic"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=400" alt="Promise"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=400" alt="Soiree"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&q=80&w=400" alt="Fine Details"></div>
+                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=400" alt="Dance"></div>
+            </div>
+        </section>
+
         <!-- SECTION: EVENTS -->
         <section id="events" class="tab-content">
             <div class="text-center mb-12">
@@ -560,8 +624,8 @@
                     <span lang-content="es">RSVP Fiesta de Compromiso</span>
                 </h2>
                 <p class="text-center italic text-gray-500 mb-8">
-                    <span lang-content="en">"R.S.V.P. for the celebration in Cooper City"</span>
-                    <span lang-content="es">"Por favor confirme su asistencia para la celebración en Cooper City"</span>
+                    <span lang-content="en">"R.S.V.P. for the celebration in Cooper City on May 30, 2026"</span>
+                    <span lang-content="es">"Por favor confirme su asistencia para la celebración en Cooper City el 30 de Mayo del 2026"</span>
                 </p>
                 
                 <form id="rsvp-form" class="space-y-8">
@@ -625,12 +689,10 @@
 
     <!-- Resilient Firebase/Sheet Logic -->
     <script type="module">
-        // Import Firebase safely
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // CONFIGURATION
         const googleSheetURL = "https://script.google.com/macros/s/AKfycbz9YdAw-8F0v9_5vOU74eNx3CN-anl424OzZx1N0k3iI1D3A8x77PfhtdCTuFbeECyd/exec"; 
         
         let db = null;
@@ -638,7 +700,6 @@
         let currentUser = null;
         let currentAppId = 'gilded-nuptials';
 
-        // Safe Initialization
         try {
             if (typeof __firebase_config !== 'undefined') {
                 const firebaseConfig = JSON.parse(__firebase_config);
@@ -665,7 +726,6 @@
             console.warn("Firebase config not found. Proceeding with Google Sheets only.");
         }
 
-        // Resilient Submission Handler
         window.handleRSVPSubmit = async (event) => {
             event.preventDefault();
             const submitBtn = document.getElementById('rsvp-submit');
@@ -682,7 +742,6 @@
                 submittedAt: new Date().toLocaleString()
             };
 
-            // 1. Send to Google Sheets (External)
             if (googleSheetURL) {
                 try {
                     await fetch(googleSheetURL, {
@@ -697,7 +756,6 @@
                 }
             }
 
-            // 2. Send to Internal Ledger (Only if in Canvas/Firebase env)
             if (db && currentUser) {
                 try {
                     await addDoc(collection(db, 'artifacts', currentAppId, 'public', 'data', 'rsvps'), {
@@ -709,7 +767,6 @@
                 }
             }
 
-            // Always show success to user
             document.getElementById('rsvp-form').classList.add('hidden');
             document.getElementById('success-msg').classList.remove('hidden');
         };
@@ -721,7 +778,6 @@
     </script>
 
     <script>
-        // Storybook Logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.book-slide');
         
@@ -737,7 +793,6 @@
 
         document.getElementById('prevBtn').disabled = true;
 
-        // Navigation Logic
         window.setLanguage = function(lang) {
             document.body.className = 'min-h-screen lang-' + lang;
             document.getElementById('toggle-en').classList.toggle('active', lang === 'en');
