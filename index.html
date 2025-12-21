@@ -273,14 +273,14 @@
             folder: "images/",
 
             // OUR STORY IMAGES (8 Chapters)
-            story_1: "story1.jpg",
-            story_2: "story2.jpg",
-            story_3: "story3.jpg",
-            story_4: "story4.jpg",
-            story_5: "story5.jpg",
-            story_6: "story6.jpg",
-            story_7: "story7.jpg",
-            story_8: "story8.jpg",
+            story_1: "gallery1.jpg",
+            story_2: "gallery2.jpg",
+            story_3: "gallery3.jpg",
+            story_4: "gallery4.jpg",
+            story_5: "gallery5.jpg",
+            story_6: "gallery6.jpg",
+            story_7: "gallery7.jpg",
+            story_8: "gallery8.jpg",
 
             // GALLERY IMAGES (20 Items)
             gallery_1: "gallery1.jpg",
@@ -305,8 +305,8 @@
             gallery_20: "gallery20.jpg",
 
             // EVENT BANNERS
-            event_soiree: "event1.jpg",
-            event_wedding: "event2.jpg"
+            event_soiree: "gallery25.jpg",
+            event_wedding: "gallery26.jpg"
         };
     </script>
 
@@ -533,7 +533,7 @@
             </div>
 
             <div class="gallery-grid">
-                <!-- 20 Gallery Images -->
+                <!-- Explicit 20 Gallery Items with individual IDs -->
                 <div class="gallery-item gold-border"><img id="img-gallery-1"></div>
                 <div class="gallery-item gold-border"><img id="img-gallery-2"></div>
                 <div class="gallery-item gold-border"><img id="img-gallery-3"></div>
@@ -779,7 +779,7 @@
     <script>
         /**
          * IMAGE LOADER
-         * Applies the specific filenames from IMAGE_LIST.
+         * Applies the specific filenames from IMAGE_LIST correctly.
          */
         function applyImages() {
             const list = window.IMAGE_LIST;
@@ -787,20 +787,27 @@
 
             const setImg = (id, filename) => {
                 const el = document.getElementById(id);
-                if (el && filename) el.src = path + filename;
+                if (el && filename) {
+                    el.src = path + filename;
+                }
             };
 
-            // Story Images (1-8)
-            for (let i = 1; i <= 8; i++) setImg('img-story-' + i, list['story_' + i]);
+            // Load Story Images (1-8)
+            for (let i = 1; i <= 8; i++) {
+                setImg('img-story-' + i, list['story_' + i]);
+            }
 
-            // Gallery Images (1-20)
-            for (let i = 1; i <= 20; i++) setImg('img-gallery-' + i, list['gallery_' + i]);
+            // Load Gallery Images (1-20)
+            for (let i = 1; i <= 20; i++) {
+                setImg('img-gallery-' + i, list['gallery_' + i]);
+            }
 
-            // Event Images
+            // Load Event Images
             setImg('img-event-soiree', list.event_soiree);
             setImg('img-event-wedding', list.event_wedding);
         }
 
+        // Initialize images as soon as the DOM is ready
         window.addEventListener('DOMContentLoaded', applyImages);
 
         // Storybook paging logic
