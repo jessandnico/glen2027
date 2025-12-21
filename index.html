@@ -121,6 +121,7 @@
         [lang-content] { display: none; }
         body.lang-en [lang-content="en"] { display: inline; }
         body.lang-es [lang-content="es"] { display: inline; }
+        body.lang-it [lang-content="it"] { display: inline; }
         
         body.lang-en div[lang-content="en"], 
         body.lang-en p[lang-content="en"],
@@ -129,6 +130,10 @@
         body.lang-es div[lang-content="es"], 
         body.lang-es p[lang-content="es"],
         body.lang-es section[lang-content="es"] { display: block; }
+
+        body.lang-it div[lang-content="it"], 
+        body.lang-it p[lang-content="it"],
+        body.lang-it section[lang-content="it"] { display: block; }
 
         .first-letter-cap::first-letter {
             font-size: 3rem;
@@ -262,15 +267,9 @@
 </head>
 <body class="min-h-screen lang-en">
 
-    <!-- ==========================================
-         IMAGE MANAGER: Updated to use .jpeg
-         ========================================== -->
     <script>
         window.IMAGE_LIST = {
-            // THE FOLDER WHERE YOUR IMAGES ARE
             folder: "images/",
-
-            // OUR STORY IMAGES (Mapping to your gallery filenames)
             story_1: "gallery1.jpeg",
             story_2: "gallery2.jpeg",
             story_3: "gallery3.jpeg",
@@ -279,8 +278,6 @@
             story_6: "gallery6.jpeg",
             story_7: "gallery7.jpeg",
             story_8: "gallery8.jpeg",
-
-            // GALLERY IMAGES (20 Items)
             gallery_1: "gallery1.jpeg",
             gallery_2: "gallery2.jpeg",
             gallery_3: "gallery3.jpeg",
@@ -301,8 +298,6 @@
             gallery_18: "gallery18.jpeg",
             gallery_19: "gallery19.jpeg",
             gallery_20: "gallery20.jpeg",
-
-            // EVENT BANNERS (Fallback to available images)
             event_soiree: "gallery1.jpeg",
             event_wedding: "gallery2.jpeg"
         };
@@ -312,6 +307,7 @@
     <div class="lang-toggle flex space-x-2">
         <button id="toggle-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
         <button id="toggle-es" class="lang-btn" onclick="setLanguage('es')">ES</button>
+        <button id="toggle-it" class="lang-btn" onclick="setLanguage('it')">IT</button>
     </div>
 
     <!-- Header Section -->
@@ -320,12 +316,14 @@
             <p class="uppercase tracking-[0.3em] text-xs mb-4 text-[#a67c37]">
                 <span lang-content="en">We invite you to celebrate the union of</span>
                 <span lang-content="es">Les invitamos a celebrar la unión de</span>
+                <span lang-content="it">Vi invitiamo a celebrare l'unione di</span>
             </p>
             <h1 class="heading-font text-4xl md:text-6xl text-gray-800 mb-2">Jessica & Nicolas</h1>
             <div class="ornament text-xl text-[#c5a059]">⚜</div>
             <p class="serif-font italic text-xl md:text-2xl text-gray-600">
                 <span lang-content="en">April 2nd – 4th, 2027 &bull; Long Island, New York</span>
                 <span lang-content="es">2 al 4 de abril de 2027 &bull; Long Island, Nueva York</span>
+                <span lang-content="it">2 – 4 aprile 2027 &bull; Long Island, New York</span>
             </p>
         </div>
     </header>
@@ -336,22 +334,27 @@
             <button onclick="switchTab('home')" class="nav-link active" id="btn-home">
                 <span lang-content="en">Our Story</span>
                 <span lang-content="es">Nuestra Historia</span>
+                <span lang-content="it">La Nostra Storia</span>
             </button>
             <button onclick="switchTab('gallery')" class="nav-link" id="btn-gallery">
                 <span lang-content="en">Gallery</span>
                 <span lang-content="es">Galería</span>
+                <span lang-content="it">Galleria</span>
             </button>
             <button onclick="switchTab('events')" class="nav-link" id="btn-events">
                 <span lang-content="en">The Events</span>
                 <span lang-content="es">Eventos</span>
+                <span lang-content="it">Gli Eventi</span>
             </button>
             <button onclick="switchTab('registry')" class="nav-link" id="btn-registry">
                 <span lang-content="en">Registry</span>
                 <span lang-content="es">Registro</span>
+                <span lang-content="it">Lista Nozze</span>
             </button>
             <button onclick="switchTab('rsvp')" class="nav-link" id="btn-rsvp">
                 <span lang-content="en">Engagement Party RSVP</span>
                 <span lang-content="es">Fiesta de Compromiso</span>
+                <span lang-content="it">Festa di Fidanzamento</span>
             </button>
         </div>
     </nav>
@@ -364,10 +367,12 @@
                 <h2 class="heading-font text-3xl text-gray-800">
                     <span lang-content="en">A Chronicle of Affection</span>
                     <span lang-content="es">Una Crónica de Afecto</span>
+                    <span lang-content="it">Una Cronaca di Affetto</span>
                 </h2>
                 <p class="italic text-gray-500 mt-1">
                     <span lang-content="en">Turn the pages of our history</span>
                     <span lang-content="es">Pase las páginas de nuestra historia</span>
+                    <span lang-content="it">Sfogliate le pagine della nostra storia</span>
                 </p>
             </div>
 
@@ -380,12 +385,15 @@
                             <img id="story_1" alt="Our story">
                         </div>
                         <div class="book-text-pane">
-                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">I. <span lang-content="en">The Prologue</span><span lang-content="es">El Prólogo</span></h3>
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">I. <span lang-content="en">The Prologue</span><span lang-content="es">El Prólogo</span><span lang-content="it">Il Prologo</span></h3>
                             <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">
                                 Dearest Reader, we present the chronicles of Jessica and Nicolas. Their narrative is one woven of profound affection, steadfast friendship, and perhaps a touch of mathematical precision. It was a courtship both slow and gentle, commencing in the autumn of 2023.
                             </p>
                             <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">
                                 Querido Lector, presentamos las crónicas de Jessica y Nicolas. Su narrativa está tejida de un afecto profundo, una amistad inquebrantable y, tal vez, un toque de precisión matemática. Fue un cortejo lento y gentil, que comenzó en el otoño de 2023.
+                            </p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">
+                                Carissimo Lettore, vi presentiamo le cronache di Jessica e Nicolas. La loro narrazione è intessuta di un profondo affetto, una salda amicizia e forse un tocco di precisione matematica. Fu un corteggiamento lento e gentile, iniziato nell'autunno del 2023.
                             </p>
                         </div>
                     </div>
@@ -396,32 +404,92 @@
                             <img id="story_2" alt="Our story">
                         </div>
                         <div class="book-text-pane">
-                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">II. <span lang-content="en">Origins</span><span lang-content="es">Orígenes</span></h3>
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">II. <span lang-content="en">Origins</span><span lang-content="es">Orígenes</span><span lang-content="it">Origini</span></h3>
                             <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">
                                 Two souls from distant shores: Nicolas, hailing from the emerald peaks of Colombia, and Jessica, a daughter of the sun-drenched Cooper City, Florida. Though separated by vast geographies, they shared a common devotion to the grand tapestry of history.
                             </p>
                             <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">
                                 Dos almas de orillas distantes: Nicolas, proveniente de las cimas esmeralda de Colombia, y Jessica, una hija de la soleada Cooper City, Florida. Aunque separados por vastas geografías, compartían una devoción común por el gran tapiz de la historia.
                             </p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">
+                                Due anime da rive lontane: Nicolas, proveniente dalle cime color smeraldo della Colombia, e Jessica, figlia della soleggiata Cooper City, Florida. Sebbene separati da vaste geografie, condividevano una comune devozione al grande arazzo della storia.
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Additional slides... -->
-                    <!-- For brevity, I've kept the slides IDs but you can repeat the logic for 3-8 -->
-                     <div class="book-slide flex-row"><div class="book-image-pane border-r border-[#c5a059]"><img id="story_3"></div><div class="book-text-pane"><h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">III. <span lang-content="en">The Encounter</span><span lang-content="es">El Encuentro</span></h3><p lang-content="en" class="text-lg leading-relaxed first-letter-cap">Their meeting transpired amidst the vibrant spirit of Miami in September 2023. For years, they had existed as strangers, observing one another from opposite ends of rooms with a perceived lack of attention. Little did they know the universe was arranging the scene for its greatest love story.</p><p lang-content="es" class="text-lg leading-relaxed first-letter-cap">Su encuentro transcurrió en el espíritu vibrante de Miami en septiembre de 2023. Durante años, habían existido como extraños, observándose el uno al otro desde extremos opuestos de las habitaciones. Poco sabían que el universo estaba organizando la escena para su mayor historia de amor.</p></div></div>
-                     <div class="book-slide flex-row-reverse"><div class="book-image-pane border-l border-[#c5a059]"><img id="story_4"></div><div class="book-text-pane"><h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">IV. <span lang-content="en">Manhattan Adventures</span><span lang-content="es">Aventuras en Manhattan</span></h3><p lang-content="en" class="text-lg leading-relaxed first-letter-cap">The second rendezvous occurred in the grand metropolis of New York. A weekend of laughter and spirited adventures was spent traversing their favorite city in the world. They jokingly whispered of a future in this beautiful metropolis, never guessing how soon it would arrive.</p><p lang-content="es" class="text-lg leading-relaxed first-letter-cap">La segunda cita tuvo lugar en la gran metrópolis de Nueva York. Pasaron un fin de semana de risas y aventuras animadas recorriendo su ciudad favorita del mundo. Susurraron en broma sobre un futuro en esta hermosa metrópolis, sin adivinar cuán pronto llegaría.</p></div></div>
-                     <div class="book-slide flex-row"><div class="book-image-pane border-r border-[#c5a059]"><img id="story_5"></div><div class="book-text-pane"><h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">V. <span lang-content="en">The Hudson River</span><span lang-content="es">El Río Hudson</span></h3><p lang-content="en" class="text-lg leading-relaxed first-letter-cap">Destiny soon called them to Jersey City. Jessica, whose father was raised in Brooklyn, had spent her life mocking the Jersey shores from the eastern banks of the Hudson. As Jessica often explains to her father now: <em>“It's on the other side of the Hudson River, Dad.”</em></p><p lang-content="es" class="text-lg leading-relaxed first-letter-cap">El destino pronto los llamó a Jersey City. Jessica, cuyo padre se crió en Brooklyn, había pasado su vida burlándose de las costas de Jersey desde las orillas orientales del Hudson. Como Jessica a menudo le explica a su padre ahora: <em>“Está al otro lado del río Hudson, papá”.</em></p></div></div>
-                     <div class="book-slide flex-row-reverse"><div class="book-image-pane border-l border-[#c5a059]"><img id="story_6"></div><div class="book-text-pane"><h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VI. <span lang-content="en">The Covenant</span><span lang-content="es">El Pacto</span></h3><p lang-content="en" class="text-lg leading-relaxed first-letter-cap">On the twenty-second of August, 2025, Nicolas requested Jessica’s hand in marriage. It was a moment of profound commitment, a promise of a future built upon the bedrock of their meaningful friendship and shared aspirations amidst the backdrop of history.</p><p lang-content="es" class="text-lg leading-relaxed first-letter-cap">El veintidós de agosto de 2025, Nicolas pidió la mano de Jessica en matrimonio. Fue un momento de profundo compromiso, una promesa de un futuro construido sobre la base de su amistad significativa y aspiraciones compartidas.</p></div></div>
-                     <div class="book-slide flex-row"><div class="book-image-pane border-r border-[#c5a059]"><img id="story_7"></div><div class="book-text-pane"><h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VII. <span lang-content="en">Jersey Life</span><span lang-content="es">Vida en Jersey</span></h3><p lang-content="en" class="text-lg leading-relaxed first-letter-cap">They now dwell in the historic downtown of Jersey City, proud of their neighborhood. Their affection was so infectious that even Jessica’s father, a staunch Brooklynite, has converted his allegiances to the charms of the "Sixth Borough."</p><p lang-content="es" class="text-lg leading-relaxed first-letter-cap">Ahora viven en el centro histórico de Jersey City, orgullosos de su vecindario. Su afecto fue tan contagioso que incluso el padre de Jessica, un firme brooklyniano, ha convertido sus lealtades a los encantos del "Sexto Distrito".</p></div></div>
-                     <div class="book-slide flex-row-reverse"><div class="book-image-pane border-l border-[#c5a059]"><img id="story_8"></div><div class="book-text-pane"><h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VIII. <span lang-content="en">The Eternal Bond</span><span lang-content="es">El Vínculo Eterno</span></h3><p lang-content="en" class="text-lg leading-relaxed first-letter-cap">Their love story is a noble pursuit of mutual growth and true friendship. It makes them individually the best versions of themselves as they prepare to dance within the grand halls of The Manor at Glen Cove.</p><p lang-content="es" class="text-lg leading-relaxed first-letter-cap">Su historia de amor es una noble búsqueda del crecimiento mutuo y la verdadera amistad. Los convierte individualmente en las mejores versiones de sí mismos mientras se preparan para bailar en los grandes salones de The Manor at Glen Cove.</p></div></div>
+                    <!-- Chapter 3 -->
+                     <div class="book-slide flex-row">
+                        <div class="book-image-pane border-r border-[#c5a059]"><img id="story_3"></div>
+                        <div class="book-text-pane">
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">III. <span lang-content="en">The Encounter</span><span lang-content="es">El Encuentro</span><span lang-content="it">L'Incontro</span></h3>
+                            <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">Their meeting transpired amidst the vibrant spirit of Miami in September 2023. For years, they had existed as strangers, observing one another from opposite ends of rooms with a perceived lack of attention. Little did they know the universe was arranging the scene for its greatest love story.</p>
+                            <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">Su encuentro transcurrió en el espíritu vibrante de Miami en septiembre de 2023. Durante años, habían existido como extraños, observándose el uno al otro desde extremos opuestos de las habitaciones. Poco sabían que el universo estaba organizando la escena para su mayor historia de amor.</p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">Il loro incontro avvenne nel vivace spirito di Miami nel settembre 2023. Per anni, erano esistiti come estranei, osservandosi da estremità opposte delle stanze con una percepita mancanza di attenzione. Non sapevano che l'universo stava preparando la scena per la sua più grande storia d'amore.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 4 -->
+                     <div class="book-slide flex-row-reverse">
+                        <div class="book-image-pane border-l border-[#c5a059]"><img id="story_4"></div>
+                        <div class="book-text-pane">
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">IV. <span lang-content="en">Manhattan Adventures</span><span lang-content="es">Aventuras en Manhattan</span><span lang-content="it">Avventure a Manhattan</span></h3>
+                            <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">The second rendezvous occurred in the grand metropolis of New York. A weekend of laughter and spirited adventures was spent traversing their favorite city in the world. They jokingly whispered of a future in this beautiful metropolis, never guessing how soon it would arrive.</p>
+                            <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">La segunda cita tuvo lugar en la gran metrópolis de Nueva York. Pasaron un fin de semana de risas y aventuras animadas recorriendo su ciudad favorita del mundo. Susurraron en broma sobre un futuro en esta hermosa metrópolis, sin adivinar cuán pronto llegaría.</p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">Il secondo appuntamento ebbe luogo nella grande metropoli di New York. Un fine settimana di risate e avventure animate trascorso attraversando la loro città preferita al mondo. Sussurravano scherzosamente di un futuro in questa bellissima metropoli, senza immaginare quanto presto sarebbe arrivato.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 5 -->
+                     <div class="book-slide flex-row">
+                        <div class="book-image-pane border-r border-[#c5a059]"><img id="story_5"></div>
+                        <div class="book-text-pane">
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">V. <span lang-content="en">The Hudson River</span><span lang-content="es">El Río Hudson</span><span lang-content="it">Il Fiume Hudson</span></h3>
+                            <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">Destiny soon called them to Jersey City. Jessica, whose father was raised in Brooklyn, had spent her life mocking the Jersey shores from the eastern banks of the Hudson. As Jessica often explains to her father now: <em>“It's on the other side of the Hudson River, Dad.”</em></p>
+                            <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">El destino pronto los llamó a Jersey City. Jessica, cuyo padre se crió en Brooklyn, había pasado su vida burlándose de las costas de Jersey desde las orillas orientales del Hudson. Como Jessica a menudo le explica a su padre ahora: <em>“Está al otro lado del río Hudson, papá”.</em></p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">Il destino li chiamò presto a Jersey City. Jessica, il cui padre è cresciuto a Brooklyn, aveva passato la vita a deridere le coste del Jersey dalle sponde orientali dell'Hudson. Come Jessica spiega spesso a suo padre ora: <em>“È dall'altra parte del fiume Hudson, papà.”</em></p>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 6 -->
+                     <div class="book-slide flex-row-reverse">
+                        <div class="book-image-pane border-l border-[#c5a059]"><img id="story_6"></div>
+                        <div class="book-text-pane">
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VI. <span lang-content="en">The Covenant</span><span lang-content="es">El Pacto</span><span lang-content="it">Il Patto</span></h3>
+                            <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">On the twenty-second of August, 2025, Nicolas requested Jessica’s hand in marriage. It was a moment of profound commitment, a promise of a future built upon the bedrock of their meaningful friendship and shared aspirations amidst the backdrop of history.</p>
+                            <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">El veintidós de agosto de 2025, Nicolas pidió la mano de Jessica en matrimonio. Fue un momento de profundo compromiso, una promesa de un futuro construido sobre la base de su amistad significativa y aspiraciones compartidas.</p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">Il ventidue agosto 2025, Nicolas chiese la mano di Jessica in matrimonio. Fu un momento di profondo impegno, una promessa di un futuro costruito sulle fondamenta della loro significativa amicizia e delle aspirazioni condivise sullo sfondo della storia.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 7 -->
+                     <div class="book-slide flex-row">
+                        <div class="book-image-pane border-r border-[#c5a059]"><img id="story_7"></div>
+                        <div class="book-text-pane">
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VII. <span lang-content="en">Jersey Life</span><span lang-content="es">Vida en Jersey</span><span lang-content="it">Vita a Jersey</span></h3>
+                            <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">They now dwell in the historic downtown of Jersey City, proud of their neighborhood. Their affection was so infectious that even Jessica’s father, a staunch Brooklynite, has converted his allegiances to the charms of the "Sixth Borough."</p>
+                            <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">Ahora viven en el centro histórico de Jersey City, orgullosos de su vecindario. Su afecto fue tan contagioso que incluso el padre de Jessica, un firme brooklyniano, ha convertido sus lealtades a los encantos del "Sexto Distrito".</p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">Ora vivono nel centro storico di Jersey City, orgogliosi del loro quartiere. Il loro affetto è stato così contagioso che persino il padre di Jessica, un convinto sostenitore di Brooklyn, ha convertito la sua fedeltà al fascino del “Sexto Distrito”.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 8 -->
+                     <div class="book-slide flex-row-reverse">
+                        <div class="book-image-pane border-l border-[#c5a059]"><img id="story_8"></div>
+                        <div class="book-text-pane">
+                            <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VIII. <span lang-content="en">The Eternal Bond</span><span lang-content="es">El Vínculo Eterno</span><span lang-content="it">Il Legame Eterno</span></h3>
+                            <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">Their love story is a noble pursuit of mutual growth and true friendship. It makes them individually the best versions of themselves as they prepare to dance within the grand halls of The Manor at Glen Cove. Sincerely, Jessica and Nicolas.</p>
+                            <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">Su historia de amor es una noble búsqueda del crecimiento mutuo y la verdadera amistad. Los convierte individualmente en las mejores versiones de sí mismos mientras se preparan para bailar en los grandes salones de The Manor at Glen Cove. Sinceramente, Jessica y Nicolas.</p>
+                            <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">La loro storia d'amore è una nobile ricerca di crescita reciproca e vera amicizia. Li rende individualmente le migliori versioni di se stessi mentre si preparano a ballare nelle grandi sale di The Manor a Glen Cove. Con affetto, Jessica e Nicolas.</p>
+                        </div>
+                    </div>
 
                 </div>
 
                 <!-- Fixed Footer Navigation -->
                 <div class="book-footer">
-                    <button class="nav-arrow" id="prevBtn" onclick="changeSlide(-1)">&larr; <span lang-content="en">Prev</span><span lang-content="es">Ant</span></button>
+                    <button class="nav-arrow" id="prevBtn" onclick="changeSlide(-1)">&larr; <span lang-content="en">Prev</span><span lang-content="es">Ant</span><span lang-content="it">Prec</span></button>
                     <div class="chapter-counter"><span id="chapNum">1</span> / 8</div>
-                    <button class="nav-arrow" id="nextBtn" onclick="changeSlide(1)"><span lang-content="en">Next</span><span lang-content="es">Sig</span> &rarr;</button>
+                    <button class="nav-arrow" id="nextBtn" onclick="changeSlide(1)"><span lang-content="en">Next</span><span lang-content="es">Sig</span><span lang-content="it">Succ</span> &rarr;</button>
                 </div>
             </div>
         </section>
@@ -432,10 +500,12 @@
                 <h2 class="heading-font text-4xl mb-4">
                     <span lang-content="en">The Visual Archive</span>
                     <span lang-content="es">El Archivo Visual</span>
+                    <span lang-content="it">L'Archivo Visuale</span>
                 </h2>
                 <p class="serif-font italic text-gray-600">
-                    <span lang-content="en">Capturing moments across the eras</span>
-                    <span lang-content="es">Capturando momentos a través de las eras</span>
+                    <span lang-content="en">Capturing the joy of our engagement celebration</span>
+                    <span lang-content="es">Capturando la alegría de nuestra celebración de compromiso</span>
+                    <span lang-content="it">Catturando la gioia della nostra celebrazione di fidanzamento</span>
                 </p>
             </div>
 
@@ -469,10 +539,12 @@
                 <h2 class="heading-font text-4xl mb-4">
                     <span lang-content="en">The Grand Festivities</span>
                     <span lang-content="es">Las Grandes Festividades</span>
+                    <span lang-content="it">Le Grandi Festività</span>
                 </h2>
                 <p class="serif-font italic text-gray-600 text-center mx-auto">
                     <span lang-content="en">An itinerary of elegance</span>
                     <span lang-content="es">Un itinerario de elegancia</span>
+                    <span lang-content="it">Un itinerario di eleganza</span>
                 </p>
             </div>
 
@@ -485,15 +557,18 @@
                         <h3 class="heading-font text-2xl text-[#a67c37] mb-2">
                             <span lang-content="en">The Engagement Soirée</span>
                             <span lang-content="es">La Soirée de Compromiso</span>
+                            <span lang-content="it">La Soirée di Fidanzamento</span>
                         </h3>
                         <p class="uppercase text-xs tracking-tighter mb-4">
                             <span lang-content="en">Saturday, May 30th, 2026</span>
                             <span lang-content="es">Sábado, 30 de mayo de 2026</span>
+                            <span lang-content="it">Sabato 30 maggio 2026</span>
                         </p>
                         <p class="text-gray-700 leading-relaxed mb-4">Cooper City, Florida</p>
                         <p class="text-gray-700 leading-relaxed mb-4">
                             <span lang-content="en">An evening to toast our intentions and celebrate with our loved ones in the Sunshine State.</span>
                             <span lang-content="es">Una velada para brindar por nuestras intenciones y celebrar con nuestros seres queridos en el Estado del Sol.</span>
+                            <span lang-content="it">Una serata per brindare alle nostre intenzioni e festeggiare con i nostri cari nello Stato del Sole.</span>
                         </p>
                     </div>
                 </div>
@@ -508,15 +583,18 @@
                         <h3 class="heading-font text-2xl text-[#a67c37] mb-2">
                             <span lang-content="en">The Wedding Celebration</span>
                             <span lang-content="es">La Celebración de la Boda</span>
+                            <span lang-content="it">La Celebrazione del Matrimonio</span>
                         </h3>
                         <p class="uppercase text-xs tracking-tighter mb-4">
                             <span lang-content="en">Friday, April 2nd – Sunday, April 4th, 2027</span>
                             <span lang-content="es">Viernes, 2 de abril – Domingo, 4 de abril de 2027</span>
+                            <span lang-content="it">Venerdì 2 aprile – Domenica 4 aprile 2027</span>
                         </p>
                         <p class="text-gray-700 leading-relaxed mb-4">The Manor at Glen Cove, Long Island</p>
                         <p class="italic text-gray-500 mb-4">
                             <span lang-content="en">More details to come.</span>
                             <span lang-content="es">Más detalles próximamente.</span>
+                            <span lang-content="it">Maggiori dettagli a breve.</span>
                         </p>
                     </div>
                 </div>
@@ -529,10 +607,12 @@
                 <h2 class="heading-font text-4xl mb-8">
                     <span lang-content="en">The Registry</span>
                     <span lang-content="es">El Registro</span>
+                    <span lang-content="it">Lista Nozze</span>
                 </h2>
                 <p class="text-xl mb-12 italic text-gray-600">
                     <span lang-content="en">"Your presence is our greatest treasure. However, should you wish to honor us with a gift, we have selected a registry for our home."</span>
                     <span lang-content="es">"Su presencia es nuestro mayor tesoro. Sin embargo, si desea honrarnos con un obsequio, hemos seleccionado un registro para nuestro hogar."</span>
+                    <span lang-content="it">"La vostra presenza è il nostro tesoro più grande. Tuttavia, se desiderate onorarci con un regalo, abbiamo selezionato una lista nozze per la nostra casa."</span>
                 </p>
                 
                 <div class="flex justify-center">
@@ -541,6 +621,7 @@
                         <p class="text-sm mt-3 italic">
                             <span lang-content="en">View Our Registry on The Knot</span>
                             <span lang-content="es">Ver Nuestro Registro en The Knot</span>
+                            <span lang-content="it">Visualizza la nostra Lista su The Knot</span>
                         </p>
                     </a>
                 </div>
@@ -553,10 +634,12 @@
                 <h2 class="heading-font text-3xl text-center mb-2">
                     <span lang-content="en">Engagement Party RSVP</span>
                     <span lang-content="es">RSVP Fiesta de Compromiso</span>
+                    <span lang-content="it">RSVP Festa di Fidanzamento</span>
                 </h2>
                 <p class="text-center italic text-gray-500 mb-8">
                     <span lang-content="en">"R.S.V.P. for the celebration in Cooper City on May 30, 2026"</span>
                     <span lang-content="es">"Por favor confirme su asistencia para la celebración en Cooper City el 30 de Mayo del 2026"</span>
+                    <span lang-content="it">"R.S.V.P. per la celebrazione a Cooper City il 30 maggio 2026"</span>
                 </p>
                 
                 <form id="rsvp-form" class="space-y-8">
@@ -564,6 +647,7 @@
                         <label class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37] mb-1">
                             <span lang-content="en">Your Full Name(s)</span>
                             <span lang-content="es">Su Nombre Completo</span>
+                            <span lang-content="it">Il Vostro Nome Completo</span>
                         </label>
                         <input type="text" id="rsvp-name" placeholder="Jessica & Nicolas" class="py-2 border-none focus:ring-0 text-lg border-b border-gray-200" required>
                     </div>
@@ -572,6 +656,7 @@
                         <p class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37]">
                             <span lang-content="en">Will you join us on May 30th, 2026?</span>
                             <span lang-content="es">¿Nos acompañará el 30 de mayo de 2026?</span>
+                            <span lang-content="it">Sarete con noi il 30 maggio 2026?</span>
                         </p>
                         <div class="flex items-center space-x-6">
                             <label class="inline-flex items-center cursor-pointer">
@@ -579,6 +664,7 @@
                                 <span class="ml-2">
                                     <span lang-content="en">Joyfully Accepts</span>
                                     <span lang-content="es">Acepto con Gusto</span>
+                                    <span lang-content="it">Accetto con Gioia</span>
                                 </span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer">
@@ -586,6 +672,7 @@
                                 <span class="ml-2">
                                     <span lang-content="en">Regretfully Declines</span>
                                     <span lang-content="es">Declino con Pesar</span>
+                                    <span lang-content="it">Declino con Rammarico</span>
                                 </span>
                             </label>
                         </div>
@@ -595,6 +682,7 @@
                         <label class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37] mb-1">
                             <span lang-content="en">Dietary Restrictions & Notes</span>
                             <span lang-content="es">Restricciones Dietéticas y Notas</span>
+                            <span lang-content="it">Restrizioni Alimentari e Note</span>
                         </label>
                         <textarea id="rsvp-notes" rows="2" class="py-2 border-none focus:ring-0 text-md border-b border-gray-200" placeholder="..."></textarea>
                     </div>
@@ -602,11 +690,13 @@
                     <button type="submit" id="rsvp-submit" class="w-full fancy-btn py-4 heading-font text-lg tracking-widest">
                         <span lang-content="en">Submit Response</span>
                         <span lang-content="es">Enviar Respuesta</span>
+                        <span lang-content="it">Invia Risposta</span>
                     </button>
                 </form>
                 <div id="success-msg" class="hidden mt-8 text-center text-green-700 italic font-bold">
                     <span lang-content="en">Thank you. Your response has been recorded in our ledger.</span>
                     <span lang-content="es">Gracias. Su respuesta ha sido registrada en nuestro libro.</span>
+                    <span lang-content="it">Grazie. La vostra risposta è stata registrata nel nostro registro.</span>
                 </div>
             </div>
         </section>
@@ -629,7 +719,6 @@
         let currentUser = null;
         let currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'gilded-nuptials';
 
-        // Firebase Initialization with Rule 3: Auth Before Queries
         try {
             if (typeof __firebase_config !== 'undefined' && __firebase_config) {
                 const firebaseConfig = JSON.parse(__firebase_config);
@@ -651,7 +740,6 @@
                 
                 onAuthStateChanged(auth, (user) => { 
                     currentUser = user; 
-                    console.log("Auth state changed:", user?.uid);
                 });
                 initAuth();
             }
@@ -675,7 +763,6 @@
                 submittedAt: new Date().toISOString() 
             };
 
-            // Rule 1: Using strict path /artifacts/{appId}/public/data/rsvps
             if (db && currentUser) {
                 try {
                     await addDoc(collection(db, 'artifacts', currentAppId, 'public', 'data', 'rsvps'), { 
@@ -686,8 +773,6 @@
                 } catch (dbError) { 
                     console.error("Firestore Error:", dbError); 
                 }
-            } else {
-                console.warn("Database or User not initialized. Response locally simulated.");
             }
 
             document.getElementById('rsvp-form').classList.add('hidden');
@@ -700,12 +785,6 @@
 
     <!-- UI Scripts -->
     <script>
-        /**
-         * IMAGE LOADER
-         * Fixes:
-         * 1. Extension: .jpg -> .jpeg
-         * 2. Path: Ensures "images/" is only prepended once.
-         */
         function applyImages() {
             const list = window.IMAGE_LIST;
             const folderPath = list.folder.endsWith('/') ? list.folder : list.folder + '/';
@@ -713,11 +792,8 @@
             const setImg = (id, filename) => {
                 const el = document.getElementById(id);
                 if (el && filename) {
-                    // Check if filename already includes the folder path
                     const src = filename.startsWith(folderPath) ? filename : folderPath + filename;
                     el.src = src;
-                    
-                    // Fallback to placeholder if file missing
                     el.onerror = function() {
                         this.src = "https://via.placeholder.com/800x600/fdfaf6/c5a059?text=Jessica+%26+Nicolas";
                         this.onerror = null;
@@ -725,25 +801,14 @@
                 }
             };
 
-            // Load Story Images (story_1 to story_8)
-            for (let i = 1; i <= 8; i++) {
-                setImg('story_' + i, list['story_' + i]);
-            }
-
-            // Load Gallery Images (gallery_1 to gallery_20)
-            for (let i = 1; i <= 20; i++) {
-                setImg('gallery_' + i, list['gallery_' + i]);
-            }
-
-            // Load Event Images
+            for (let i = 1; i <= 8; i++) setImg('story_' + i, list['story_' + i]);
+            for (let i = 1; i <= 20; i++) setImg('gallery_' + i, list['gallery_' + i]);
             setImg('event_soiree', list.event_soiree);
             setImg('event_wedding', list.event_wedding);
         }
 
-        // Initialize images
         window.addEventListener('DOMContentLoaded', applyImages);
 
-        // Storybook paging logic
         let currentSlide = 0;
         window.changeSlide = function(direction) {
             const slides = document.querySelectorAll('.book-slide');
@@ -756,14 +821,13 @@
             document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
         }
 
-        // Language toggle
         window.setLanguage = function(lang) {
             document.body.className = 'min-h-screen lang-' + lang;
             document.getElementById('toggle-en').classList.toggle('active', lang === 'en');
             document.getElementById('toggle-es').classList.toggle('active', lang === 'es');
+            document.getElementById('toggle-it').classList.toggle('active', lang === 'it');
         }
 
-        // Tab switching
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
