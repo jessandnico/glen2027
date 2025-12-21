@@ -282,7 +282,7 @@
             story_7: "gallery7.jpg",
             story_8: "gallery8.jpg",
 
-            // GALLERY IMAGES (16 Items)
+            // GALLERY IMAGES (20 Items)
             gallery_1: "gallery1.jpg",
             gallery_2: "gallery2.jpg",
             gallery_3: "gallery3.jpg",
@@ -299,6 +299,10 @@
             gallery_14: "gallery14.jpg",
             gallery_15: "gallery15.jpg",
             gallery_16: "gallery16.jpg",
+            gallery_17: "gallery17.jpg",
+            gallery_18: "gallery18.jpg",
+            gallery_19: "gallery19.jpg",
+            gallery_20: "gallery20.jpg",
 
             // EVENT BANNERS
             event_soiree: "gallery25.jpg",
@@ -529,7 +533,7 @@
             </div>
 
             <div class="gallery-grid">
-                <!-- 16 Local Images -->
+                <!-- 20 Gallery Images -->
                 <div class="gallery-item gold-border"><img id="img-gallery-1"></div>
                 <div class="gallery-item gold-border"><img id="img-gallery-2"></div>
                 <div class="gallery-item gold-border"><img id="img-gallery-3"></div>
@@ -546,6 +550,10 @@
                 <div class="gallery-item gold-border"><img id="img-gallery-14"></div>
                 <div class="gallery-item gold-border"><img id="img-gallery-15"></div>
                 <div class="gallery-item gold-border"><img id="img-gallery-16"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-17"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-18"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-19"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-20"></div>
             </div>
         </section>
 
@@ -796,43 +804,31 @@
     <script>
         /**
          * IMAGE LOADER
-         * This script takes the filenames from the list at the top and applies them.
+         * Applies the specific filenames from IMAGE_LIST.
          */
         function applyImages() {
             const list = window.IMAGE_LIST;
             const path = list.folder;
 
-            // Helper to set image by ID
             const setImg = (id, filename) => {
                 const el = document.getElementById(id);
-                if (el && filename) {
-                    el.src = path + filename;
-                }
+                if (el && filename) el.src = path + filename;
             };
 
-            // Applying Story Images
-            setImg('img-story-1', list.story_1);
-            setImg('img-story-2', list.story_2);
-            setImg('img-story-3', list.story_3);
-            setImg('img-story-4', list.story_4);
-            setImg('img-story-5', list.story_5);
-            setImg('img-story-6', list.story_6);
-            setImg('img-story-7', list.story_7);
-            setImg('img-story-8', list.story_8);
+            // Story Images (1-8)
+            for (let i = 1; i <= 8; i++) setImg('img-story-' + i, list['story_' + i]);
 
-            // Applying Gallery Images
-            for (let i = 1; i <= 16; i++) {
-                setImg('img-gallery-' + i, list['gallery_' + i]);
-            }
+            // Gallery Images (1-20)
+            for (let i = 1; i <= 20; i++) setImg('img-gallery-' + i, list['gallery_' + i]);
 
-            // Applying Event Images
+            // Event Images
             setImg('img-event-soiree', list.event_soiree);
             setImg('img-event-wedding', list.event_wedding);
         }
 
         window.addEventListener('DOMContentLoaded', applyImages);
 
-        // Storybook logic
+        // Storybook paging logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.book-slide');
         window.changeSlide = function(direction) {
