@@ -264,6 +264,48 @@
 </head>
 <body class="min-h-screen lang-en">
 
+    <!-- ==========================================
+         IMAGE MANAGER: Change filenames here!
+         ========================================== -->
+    <script>
+        window.IMAGE_LIST = {
+            // THE FOLDER WHERE YOUR IMAGES ARE
+            folder: "images/",
+
+            // OUR STORY IMAGES (8 Chapters)
+            story_1: "gallery1.jpg",
+            story_2: "gallery2.jpg",
+            story_3: "gallery3.jpg",
+            story_4: "gallery4.jpg",
+            story_5: "gallery5.jpg",
+            story_6: "gallery6.jpg",
+            story_7: "gallery7.jpg",
+            story_8: "gallery8.jpg",
+
+            // GALLERY IMAGES (16 Items)
+            gallery_1: "gallery1.jpg",
+            gallery_2: "gallery2.jpg",
+            gallery_3: "gallery3.jpg",
+            gallery_4: "gallery4.jpg",
+            gallery_5: "gallery5.jpg",
+            gallery_6: "gallery6.jpg",
+            gallery_7: "gallery7.jpg",
+            gallery_8: "gallery8.jpg",
+            gallery_9: "gallery9.jpg",
+            gallery_10: "gallery10.jpg",
+            gallery_11: "gallery11.jpg",
+            gallery_12: "gallery12.jpg",
+            gallery_13: "gallery13.jpg",
+            gallery_14: "gallery14.jpg",
+            gallery_15: "gallery15.jpg",
+            gallery_16: "gallery16.jpg",
+
+            // EVENT BANNERS
+            event_soiree: "gallery25.jpg",
+            event_wedding: "gallery26.jpg"
+        };
+    </script>
+
     <!-- Language Toggle -->
     <div class="lang-toggle flex space-x-2">
         <button id="toggle-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
@@ -333,7 +375,7 @@
                     <!-- Chapter 1 -->
                     <div class="book-slide active flex-row">
                         <div class="book-image-pane border-r border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-1">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">I. <span lang-content="en">The Prologue</span><span lang-content="es">El Prólogo</span></h3>
@@ -349,7 +391,7 @@
                     <!-- Chapter 2 -->
                     <div class="book-slide flex-row-reverse">
                         <div class="book-image-pane border-l border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-2">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">II. <span lang-content="en">Origins</span><span lang-content="es">Orígenes</span></h3>
@@ -365,7 +407,7 @@
                     <!-- Chapter 3 -->
                     <div class="book-slide flex-row">
                         <div class="book-image-pane border-r border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-3">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">III. <span lang-content="en">The Encounter</span><span lang-content="es">El Encuentro</span></h3>
@@ -381,7 +423,7 @@
                     <!-- Chapter 4 -->
                     <div class="book-slide flex-row-reverse">
                         <div class="book-image-pane border-l border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-4">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">IV. <span lang-content="en">Manhattan Adventures</span><span lang-content="es">Aventuras en Manhattan</span></h3>
@@ -397,7 +439,7 @@
                     <!-- Chapter 5 -->
                     <div class="book-slide flex-row">
                         <div class="book-image-pane border-r border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-5">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">V. <span lang-content="en">The Hudson River</span><span lang-content="es">El Río Hudson</span></h3>
@@ -413,7 +455,7 @@
                     <!-- Chapter 6 -->
                     <div class="book-slide flex-row-reverse">
                         <div class="book-image-pane border-l border-[#c5a059]">
-                            <img src="Nicolas-Jessica-Manhatta-Proposal-234.jpg" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800'">
+                            <img id="img-story-6">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VI. <span lang-content="en">The Covenant</span><span lang-content="es">El Pacto</span></h3>
@@ -429,7 +471,7 @@
                     <!-- Chapter 7 -->
                     <div class="book-slide flex-row">
                         <div class="book-image-pane border-r border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-7">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VII. <span lang-content="en">Jersey Life</span><span lang-content="es">Vida en Jersey</span></h3>
@@ -445,7 +487,7 @@
                     <!-- Chapter 8 -->
                     <div class="book-slide flex-row-reverse">
                         <div class="book-image-pane border-l border-[#c5a059]">
-                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800">
+                            <img id="img-story-8">
                         </div>
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-sm">VIII. <span lang-content="en">The Eternal Bond</span><span lang-content="es">El Vínculo Eterno</span></h3>
@@ -487,23 +529,23 @@
             </div>
 
             <div class="gallery-grid">
-                <!-- 16 Themed Placeholder Images -->
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400" alt="Estate"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=400" alt="Celebration"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=400" alt="Architecture"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400" alt="Garden"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=400" alt="NYC"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=400" alt="Champagne"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1544144433-d50aff500b91?auto=format&fit=crop&q=80&w=400" alt="Mansion"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=400" alt="Vintage"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=400" alt="Lights"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&q=80&w=400" alt="Jersey"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&q=80&w=400" alt="Interior"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=400" alt="Scenic"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=400" alt="Promise"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=400" alt="Soiree"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&q=80&w=400" alt="Fine Details"></div>
-                <div class="gallery-item gold-border"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=400" alt="Dance"></div>
+                <!-- 16 Local Images -->
+                <div class="gallery-item gold-border"><img id="img-gallery-1"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-2"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-3"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-4"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-5"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-6"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-7"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-8"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-9"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-10"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-11"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-12"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-13"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-14"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-15"></div>
+                <div class="gallery-item gold-border"><img id="img-gallery-16"></div>
             </div>
         </section>
 
@@ -523,7 +565,7 @@
             <div class="space-y-16 max-w-3xl mx-auto">
                 <div class="flex flex-col md:flex-row gap-8 items-center">
                     <div class="w-full md:w-1/2 gold-border">
-                        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=600" class="w-full h-64 object-cover">
+                        <img id="img-event-soiree" class="w-full h-64 object-cover">
                     </div>
                     <div class="w-full md:w-1/2">
                         <h3 class="heading-font text-2xl text-[#a67c37] mb-2">
@@ -550,7 +592,7 @@
 
                 <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
                     <div class="w-full md:w-1/2 gold-border">
-                        <img src="https://images.unsplash.com/photo-1544144433-d50aff500b91?auto=format&fit=crop&q=80&w=600" alt="The Mansion" class="w-full h-64 object-cover">
+                        <img id="img-event-wedding" class="w-full h-64 object-cover">
                     </div>
                     <div class="w-full md:w-1/2 text-right md:text-left">
                         <h3 class="heading-font text-2xl text-[#a67c37] mb-2">
@@ -687,14 +729,13 @@
         <p class="text-xs uppercase tracking-[0.2em] text-[#a67c37]">Long Island &bull; MMXXVII</p>
     </footer>
 
-    <!-- Resilient Firebase/Sheet Logic -->
+    <!-- Firebase Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const googleSheetURL = "https://script.google.com/macros/s/AKfycbz9YdAw-8F0v9_5vOU74eNx3CN-anl424OzZx1N0k3iI1D3A8x77PfhtdCTuFbeECyd/exec"; 
-        
         let db = null;
         let auth = null;
         let currentUser = null;
@@ -715,16 +756,10 @@
                         await signInAnonymously(auth);
                     }
                 };
-
-                onAuthStateChanged(auth, (user) => {
-                    currentUser = user;
-                });
-
+                onAuthStateChanged(auth, (user) => { currentUser = user; });
                 initAuth();
             }
-        } catch (e) {
-            console.warn("Firebase config not found. Proceeding with Google Sheets only.");
-        }
+        } catch (e) { console.warn("Firebase config not found."); }
 
         window.handleRSVPSubmit = async (event) => {
             event.preventDefault();
@@ -735,36 +770,18 @@
             const engagement = document.querySelector('input[name="engagement"]:checked')?.value || 'unknown';
             const notes = document.getElementById('rsvp-notes').value;
 
-            const rsvpData = {
-                guestName: name,
-                status: engagement,
-                dietaryNotes: notes,
-                submittedAt: new Date().toLocaleString()
-            };
+            const rsvpData = { guestName: name, status: engagement, dietaryNotes: notes, submittedAt: new Date().toLocaleString() };
 
             if (googleSheetURL) {
                 try {
-                    await fetch(googleSheetURL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        cache: 'no-cache',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(rsvpData)
-                    });
-                } catch (sheetError) {
-                    console.error("Sheet Sync Error:", sheetError);
-                }
+                    await fetch(googleSheetURL, { method: 'POST', mode: 'no-cors', cache: 'no-cache', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rsvpData) });
+                } catch (sheetError) { console.error("Sheet Error:", sheetError); }
             }
 
             if (db && currentUser) {
                 try {
-                    await addDoc(collection(db, 'artifacts', currentAppId, 'public', 'data', 'rsvps'), {
-                        ...rsvpData,
-                        timestamp: serverTimestamp()
-                    });
-                } catch (dbError) {
-                    console.error("Ledger Error:", dbError);
-                }
+                    await addDoc(collection(db, 'artifacts', currentAppId, 'public', 'data', 'rsvps'), { ...rsvpData, timestamp: serverTimestamp() });
+                } catch (dbError) { console.error("Ledger Error:", dbError); }
             }
 
             document.getElementById('rsvp-form').classList.add('hidden');
@@ -772,43 +789,73 @@
         };
 
         const rsvpForm = document.getElementById('rsvp-form');
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', window.handleRSVPSubmit);
-        }
+        if (rsvpForm) rsvpForm.addEventListener('submit', window.handleRSVPSubmit);
     </script>
 
+    <!-- UI Scripts -->
     <script>
+        /**
+         * IMAGE LOADER
+         * This script takes the filenames from the list at the top and applies them.
+         */
+        function applyImages() {
+            const list = window.IMAGE_LIST;
+            const path = list.folder;
+
+            // Helper to set image by ID
+            const setImg = (id, filename) => {
+                const el = document.getElementById(id);
+                if (el && filename) {
+                    el.src = path + filename;
+                }
+            };
+
+            // Applying Story Images
+            setImg('img-story-1', list.story_1);
+            setImg('img-story-2', list.story_2);
+            setImg('img-story-3', list.story_3);
+            setImg('img-story-4', list.story_4);
+            setImg('img-story-5', list.story_5);
+            setImg('img-story-6', list.story_6);
+            setImg('img-story-7', list.story_7);
+            setImg('img-story-8', list.story_8);
+
+            // Applying Gallery Images
+            for (let i = 1; i <= 16; i++) {
+                setImg('img-gallery-' + i, list['gallery_' + i]);
+            }
+
+            // Applying Event Images
+            setImg('img-event-soiree', list.event_soiree);
+            setImg('img-event-wedding', list.event_wedding);
+        }
+
+        window.addEventListener('DOMContentLoaded', applyImages);
+
+        // Storybook logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.book-slide');
-        
         window.changeSlide = function(direction) {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + direction + slides.length) % slides.length;
             slides[currentSlide].classList.add('active');
-            
             document.getElementById('chapNum').textContent = currentSlide + 1;
             document.getElementById('prevBtn').disabled = (currentSlide === 0);
             document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
         }
-
         document.getElementById('prevBtn').disabled = true;
 
+        // General UI logic
         window.setLanguage = function(lang) {
             document.body.className = 'min-h-screen lang-' + lang;
             document.getElementById('toggle-en').classList.toggle('active', lang === 'en');
             document.getElementById('toggle-es').classList.toggle('active', lang === 'es');
         }
-
         window.switchTab = function(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(c => c.classList.remove('active'));
-
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(l => l.classList.remove('active'));
-
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             document.getElementById('btn-' + tabId).classList.add('active');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
