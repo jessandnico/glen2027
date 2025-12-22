@@ -406,13 +406,13 @@
                         <div class="book-text-pane">
                             <h3 class="heading-font text-[#a67c37] mb-3 uppercase tracking-wider text-xs">II. <span lang-content="en">Origins</span><span lang-content="es">Orígenes</span><span lang-content="it">Origini</span></h3>
                             <p lang-content="en" class="text-lg leading-relaxed first-letter-cap">
-                                Two souls from distant shores: Nicolas, hailing from the emerald peaks of Colombia, and Jessica, a daughter of the sun-drenched Cooper City, Florida. Though separated by vast geographies, they shared a common devotion to the grand tapestry of history.
+                                Two souls from distant shores: Nicolas, hailing from the emerald peaks of Colombia, and Jessica, a daughter of the sun-drenched South Florida. Though separated by vast geographies, they shared a common devotion to the grand tapestry of history.
                             </p>
                             <p lang-content="es" class="text-lg leading-relaxed first-letter-cap">
-                                Dos almas de orillas distantes: Nicolas, proveniente de las cimas esmeralda de Colombia, y Jessica, una hija de la soleada Cooper City, Florida. Aunque separados por vastas geografías, compartían una devoción común por el gran tapiz de la historia.
+                                Dos almas de orillas distantes: Nicolas, proveniente de las cimas esmeralda de Colombia, y Jessica, una hija del soleado sur de Florida. Aunque separados por vastas geografías, compartían una devoción común por el gran tapiz de la historia.
                             </p>
                             <p lang-content="it" class="text-lg leading-relaxed first-letter-cap">
-                                Due anime da rive lontane: Nicolas, proveniente dalle cime color smeraldo della Colombia, e Jessica, figlia della soleggiata Cooper City, Florida. Sebbene separati da vaste geografie, condividevano una comune devozione al grande arazzo della storia.
+                                Due anime da rive lontane: Nicolas, proveniente dalle cime color smeraldo della Colombia, e Jessica, figlia della soleggiata Florida meridionale. Sebbene separati da vaste geografie, condividevano una comune devozione al grande arazzo della storia.
                             </p>
                         </div>
                     </div>
@@ -652,6 +652,15 @@
                         <input type="text" id="rsvp-name" placeholder="Jessica & Nicolas" class="py-2 border-none focus:ring-0 text-lg border-b border-gray-200" required>
                     </div>
 
+                    <div class="flex flex-col">
+                        <label class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37] mb-1">
+                            <span lang-content="en">Number of Guests Attending</span>
+                            <span lang-content="es">Número de personas que asistirán</span>
+                            <span lang-content="it">Numero di persone che parteciperanno</span>
+                        </label>
+                        <input type="number" id="rsvp-guests" min="1" max="10" value="1" class="py-2 border-none focus:ring-0 text-lg border-b border-gray-200" required>
+                    </div>
+
                     <div class="space-y-6 pt-4">
                         <p class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37]">
                             <span lang-content="en">Will you join us on May 30th, 2026?</span>
@@ -753,11 +762,13 @@
             submitBtn.disabled = true;
 
             const name = document.getElementById('rsvp-name').value;
+            const guests = document.getElementById('rsvp-guests').value;
             const engagement = document.querySelector('input[name="engagement"]:checked')?.value || 'unknown';
             const notes = document.getElementById('rsvp-notes').value;
 
             const rsvpData = { 
                 guestName: name, 
+                guestCount: guests,
                 status: engagement, 
                 dietaryNotes: notes, 
                 submittedAt: new Date().toISOString() 
