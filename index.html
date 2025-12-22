@@ -7,6 +7,8 @@
     <!-- External Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
             --gold: #c5a059;
@@ -97,6 +99,30 @@
             cursor: not-allowed;
         }
 
+        .guest-square {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Cinzel Decorative', cursive;
+            background: white;
+            color: var(--charcoal);
+            font-size: 0.9rem;
+        }
+
+        .guest-square:hover {
+            background-color: #fcf6e8;
+        }
+
+        .guest-square.active {
+            background-color: var(--gold);
+            color: white;
+        }
+
         .lang-toggle {
             position: absolute;
             top: 20px;
@@ -111,6 +137,7 @@
             border: 1px solid var(--gold);
             cursor: pointer;
             transition: 0.3s;
+            background: rgba(255,255,255,0.8);
         }
 
         .lang-btn.active {
@@ -653,12 +680,22 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37] mb-1">
+                        <label class="uppercase text-[10px] tracking-widest font-bold text-[#a67c37] mb-3">
                             <span lang-content="en">Number of Guests Attending</span>
                             <span lang-content="es">Número de personas que asistirán</span>
                             <span lang-content="it">Numero di persone che parteciperanno</span>
                         </label>
-                        <input type="number" id="rsvp-guests" min="1" max="10" value="1" class="py-2 border-none focus:ring-0 text-lg border-b border-gray-200" required>
+                        <div class="flex flex-wrap gap-2" id="guest-selector">
+                            <div class="guest-square active" onclick="selectGuests(1)">1</div>
+                            <div class="guest-square" onclick="selectGuests(2)">2</div>
+                            <div class="guest-square" onclick="selectGuests(3)">3</div>
+                            <div class="guest-square" onclick="selectGuests(4)">4</div>
+                            <div class="guest-square" onclick="selectGuests(5)">5</div>
+                            <div class="guest-square" onclick="selectGuests(6)">6</div>
+                            <div class="guest-square" onclick="selectGuests(7)">7</div>
+                            <div class="guest-square" onclick="selectGuests(8)">8</div>
+                        </div>
+                        <input type="hidden" id="rsvp-guests" value="1">
                     </div>
 
                     <div class="space-y-6 pt-4">
@@ -717,49 +754,24 @@
         <p class="text-xs uppercase tracking-[0.2em] text-[#a67c37]">Long Island &bull; MMXXVII</p>
     </footer>
 
-    <!-- Firebase Logic -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- Form Handling Logic -->
+    <script>
+        // --- GOOGLE APPS SCRIPT CONFIGURATION ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxdhRrpP9ozce0_FNbX-y9GF6jeFlSM-B_-OxuRZzyOla7YXVR_oNyLplWKdKhOXhl/exec";
 
-        let db = null;
-        let auth = null;
-        let currentUser = null;
-        let currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'gilded-nuptials';
+        // --- EMAILJS CONFIGURATION ---
+        const EMAILJS_PUBLIC_KEY = "2XHofkTEmM0ZyGlkS"; 
+        const EMAILJS_SERVICE_ID = "service_qpzuvkc";
+        const EMAILJS_TEMPLATE_ID = "template_9l9r6ce";
 
-        try {
-            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                const initAuth = async () => {
-                    try {
-                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
-                    } catch (authErr) {
-                        console.error("Authentication failed:", authErr);
-                    }
-                };
-                
-                onAuthStateChanged(auth, (user) => { 
-                    currentUser = user; 
-                });
-                initAuth();
-            }
-        } catch (e) { 
-            console.warn("Firebase config not found or invalid."); 
+        if (EMAILJS_PUBLIC_KEY) {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
         }
 
         window.handleRSVPSubmit = async (event) => {
             event.preventDefault();
             const submitBtn = document.getElementById('rsvp-submit');
-            submitBtn.disabled = true;
+            if (submitBtn) submitBtn.disabled = true;
 
             const name = document.getElementById('rsvp-name').value;
             const guests = document.getElementById('rsvp-guests').value;
@@ -769,22 +781,28 @@
             const rsvpData = { 
                 guestName: name, 
                 guestCount: guests,
-                status: engagement, 
-                dietaryNotes: notes, 
-                submittedAt: new Date().toISOString() 
+                status: engagement === 'accept' ? 'Joyfully Accepts' : 'Regretfully Declines', 
+                dietaryNotes: notes || "None provided", 
+                submittedAt: new Date().toLocaleString() 
             };
 
-            if (db && currentUser) {
-                try {
-                    await addDoc(collection(db, 'artifacts', currentAppId, 'public', 'data', 'rsvps'), { 
-                        ...rsvpData, 
-                        timestamp: serverTimestamp(),
-                        userId: currentUser.uid
-                    });
-                } catch (dbError) { 
-                    console.error("Firestore Error:", dbError); 
-                }
-            }
+            // 1. SEND TO GOOGLE APPS SCRIPT (SPREADSHEET)
+            // We use 'no-cors' mode as Apps Script often redirects and triggers CORS blocks on standard fetch,
+            // but no-cors allows the data to reach the spreadsheet regardless.
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(rsvpData)
+            }).catch(err => console.error("Google Script Error:", err));
+
+            // 2. SEND EMAIL NOTIFICATION (EMAILJS)
+            // if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID) {
+            //     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            //         ...rsvpData,
+            //         to_email: "nicolasgapar@gmail.com, jessicamgutstein@gmail.com"
+            //     }).catch(err => console.error("Email notification failed:", err));
+            // }
 
             document.getElementById('rsvp-form').classList.add('hidden');
             document.getElementById('success-msg').classList.remove('hidden');
@@ -796,8 +814,18 @@
 
     <!-- UI Scripts -->
     <script>
+        // Detect Language from URL
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            if (lang && ['en', 'es', 'it'].includes(lang)) {
+                setLanguage(lang);
+            }
+        });
+
         function applyImages() {
             const list = window.IMAGE_LIST;
+            if (!list) return;
             const folderPath = list.folder.endsWith('/') ? list.folder : list.folder + '/';
 
             const setImg = (id, filename) => {
@@ -823,6 +851,7 @@
         let currentSlide = 0;
         window.changeSlide = function(direction) {
             const slides = document.querySelectorAll('.book-slide');
+            if (slides.length === 0) return;
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + direction + slides.length) % slides.length;
             slides[currentSlide].classList.add('active');
@@ -850,6 +879,20 @@
             if (targetBtn) targetBtn.classList.add('active');
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Guest Selector Logic
+        window.selectGuests = function(num) {
+            const squares = document.querySelectorAll('.guest-square');
+            squares.forEach((sq, index) => {
+                if (index === num - 1) {
+                    sq.classList.add('active');
+                } else {
+                    sq.classList.remove('active');
+                }
+            });
+            const input = document.getElementById('rsvp-guests');
+            if (input) input.value = num;
         }
     </script>
 </body>
