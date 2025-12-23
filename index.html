@@ -605,6 +605,14 @@
 
         window.onload = () => {
             applyImages();
+            
+            // Check for ?lang= URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            if (['en', 'es', 'it'].includes(lang)) {
+                setLanguage(lang);
+            }
+
             const prevBtn = document.getElementById('prevBtn');
             if(prevBtn) prevBtn.disabled = true;
         };
